@@ -1,0 +1,32 @@
+Home
+	- Verificar menu no Mobile;
+	- Adicionar filtro sobre no video;
+	- Desabilitar controlers (timeline, volume) nos videos por Html5, deixando apenas play e full-screen;
+	- Colocar logo do Ciclo e do Frameye no footer;
+	- Adicionar BG com "E" colorido random;
+
+-----------------------------------------
+
+Mapa
+	- Verificar/adicionar filtro de seleção de pin por país;
+	- Fazer/Adicionar pin customizado;
+
+-----------------------------------------
+
+Sobre
+	- Adicionar video do frameye na página;
+	
+Todas as páginas textuais
+	- Verificar fonte (texto corrido) do pdp para aplicar no site;
+
+-----------------------------------------
+
+Member page
+	- Adicionar botão de compartilhar em cada video;
+	- Verificar tradução dos campos/tab (Profile, Notification, etc);
+	- Adicionar badges em "Minhas conquistas";
+
+-----------------------------------------
+
+Login
+	- Verificar botões de login com redes sociais;

@@ -9,13 +9,13 @@
 	 */
 	do_action( 'bp_before_member_home_content' ); ?>
 
-	<div id="item-header" role="complementary">
+    <div class="col-md-3"><div id="item-header" role="complementary">
 
 		<?php bp_get_template_part( 'members/single/member-header' ) ?>
 
-	</div><!-- #item-header -->
+        </div></div><!-- #item-header -->
 
-	<div id="item-nav">
+    <div class="col-md-9"><div id="item-nav">
 		<div class="item-list-tabs no-ajax" id="object-nav" role="navigation">
 			<ul>
 
@@ -32,7 +32,7 @@
 
 			</ul>
 		</div>
-	</div><!-- #item-nav -->
+        </div><!-- #item-nav -->
 
 	<div id="item-body">
 
@@ -85,7 +85,7 @@
 		 */
 		do_action( 'bp_after_member_body' ); ?>
 
-	</div><!-- #item-body -->
+        </div></div><!-- #item-body -->
 
 	<?php
 
