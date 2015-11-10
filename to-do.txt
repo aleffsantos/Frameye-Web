@@ -1,7 +1,4 @@
 Home
-	- Verificar menu no Mobile;
-	- Adicionar filtro sobre no video;
-	- Desabilitar controlers (timeline, volume) nos videos por Html5, deixando apenas play e full-screen;
 	- Colocar logo do Ciclo e do Frameye no footer;
 	- Adicionar BG com "E" colorido random;
 
