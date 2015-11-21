@@ -70,7 +70,7 @@ $table_prefix  = 'wp_';
  * em seus ambientes de desenvolvimento.
  */
 
-define('WP_DEBUG', true);
+define('WP_DEBUG', false);
 /* e1ce237175f62f7c3eb1f3d0b0de3b225dfb87d2 */
 
 /* Isto é tudo, pode parar de editar! :) */

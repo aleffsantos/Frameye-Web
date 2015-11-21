@@ -4,7 +4,7 @@
 * Plugin Name: Social Login, Social Sharing by miniOrange
 * Plugin URI: http://miniorange.com
 * Description: Allow your users to login, comment and share with Facebook, Google, Twitter, LinkedIn etc using customizable buttons.
-* Version: 4.6
+* Version: 4.7
 * Author: miniOrange
 * Author URI: http://miniorange.com
 * License: GPL2
@@ -55,6 +55,11 @@ class Miniorange_OpenID_SSO {
 			if(get_option('mo_openid_default_comment_enable') == 1 ){
 				add_action('comment_form_must_log_in_after', array($this, 'mo_openid_add_social_login')); 
 			   add_action('comment_form_top', array($this, 'mo_openid_add_social_login'));
+			}
+
+			//add social login to woocommerce
+			if(get_option('mo_openid_woocommerce_login_form') == 1){
+				add_action( 'woocommerce_login_form', array($this, 'mo_openid_add_social_login'));
 			}
 
 			if(get_option('mo_openid_logout_redirection_enable') == 0){
@@ -248,7 +253,11 @@ class Miniorange_OpenID_SSO {
 		mo_register_openid();
 	}
 
-		
+	function mo_openid_activation_message() {
+			$class = "updated";
+			$message = get_option('mo_openid_message');
+			echo "<div class='" . $class . "'> <p>" . $message . "</p></div>";
+	}
 
 	function mo_login_widget_text_domain(){
 		load_plugin_textdomain('flw', FALSE, basename( dirname( __FILE__ ) ) .'/languages');
@@ -259,7 +268,7 @@ class Miniorange_OpenID_SSO {
 			
 			delete_option('Activated_Plugin');
 			update_option('mo_openid_message','Go to plugin <b><a href="admin.php?page=mo_openid_settings">settings</a></b> to enable Social Login, Social Sharing by miniOrange.');
-			$this->mo_openid_show_success_message();
+			add_action('admin_notices', array($this, 'mo_openid_activation_message'));
 		}
 		
 		if( isset( $_POST['option'] ) and $_POST['option'] == "mo_openid_connect_register_customer" ) {	//register the admin to miniOrange
@@ -455,7 +464,8 @@ class Miniorange_OpenID_SSO {
 				update_option( 'mo_openid_default_login_enable', isset( $_POST['mo_openid_default_login_enable']) ? $_POST['mo_openid_default_login_enable'] : 0);
 			    update_option( 'mo_openid_default_register_enable', isset( $_POST['mo_openid_default_register_enable']) ? $_POST['mo_openid_default_register_enable'] : 0);
 			    update_option( 'mo_openid_default_comment_enable', isset( $_POST['mo_openid_default_comment_enable']) ? $_POST['mo_openid_default_comment_enable'] : 0);
-				
+			    update_option( 'mo_openid_woocommerce_login_form', isset( $_POST['mo_openid_woocommerce_login_form']) ? $_POST['mo_openid_woocommerce_login_form'] : 0);
+								
 				//Redirect URL
 				update_option( 'mo_openid_login_redirect', $_POST['mo_openid_login_redirect']);
 				update_option( 'mo_openid_login_redirect_url', $_POST['mo_openid_login_redirect_url'] );

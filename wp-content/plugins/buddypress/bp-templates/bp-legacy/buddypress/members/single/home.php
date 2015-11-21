@@ -1,3 +1,13 @@
+<?php
+/**
+ * BuddyPress - Members Home
+ *
+ * @package BuddyPress
+ * @subpackage bp-legacy
+ */
+
+?>
+
 <div id="buddypress">
 
 	<?php
@@ -5,17 +15,26 @@
 	/**
 	 * Fires before the display of member home content.
 	 *
-	 * @since BuddyPress (1.2.0)
+	 * @since 1.2.0
 	 */
 	do_action( 'bp_before_member_home_content' ); ?>
 
-    <div class="col-md-3"><div id="item-header" role="complementary">
+	<div id="item-header" role="complementary">
 
-		<?php bp_get_template_part( 'members/single/member-header' ) ?>
+		<?php
+		/**
+		 * If the cover image feature is enabled, use a specific header
+		 */
+		if ( bp_displayed_user_use_cover_image_header() ) :
+			bp_get_template_part( 'members/single/cover-image-header' );
+		else :
+			bp_get_template_part( 'members/single/member-header' );
+		endif;
+		?>
 
-        </div></div><!-- #item-header -->
+	</div><!-- #item-header -->
 
-    <div class="col-md-9"><div id="item-nav">
+	<div id="item-nav">
 		<div class="item-list-tabs no-ajax" id="object-nav" role="navigation">
 			<ul>
 
@@ -26,13 +45,13 @@
 				/**
 				 * Fires after the display of member options navigation.
 				 *
-				 * @since BuddyPress (1.2.4)
+				 * @since 1.2.4
 				 */
 				do_action( 'bp_member_options_nav' ); ?>
 
 			</ul>
 		</div>
-        </div><!-- #item-nav -->
+	</div><!-- #item-nav -->
 
 	<div id="item-body">
 
@@ -41,7 +60,7 @@
 		/**
 		 * Fires before the display of member body content.
 		 *
-		 * @since BuddyPress (1.2.0)
+		 * @since 1.2.0
 		 */
 		do_action( 'bp_before_member_body' );
 
@@ -81,18 +100,18 @@
 		/**
 		 * Fires after the display of member body content.
 		 *
-		 * @since BuddyPress (1.2.0)
+		 * @since 1.2.0
 		 */
 		do_action( 'bp_after_member_body' ); ?>
 
-        </div></div><!-- #item-body -->
+	</div><!-- #item-body -->
 
 	<?php
 
 	/**
 	 * Fires after the display of member home content.
 	 *
-	 * @since BuddyPress (1.2.0)
+	 * @since 1.2.0
 	 */
 	do_action( 'bp_after_member_home_content' ); ?>
 

@@ -477,6 +477,11 @@ function mo_openid_apps_config() {
 													<input type="checkbox" id="default_comment_enable" name="mo_openid_default_comment_enable" value="1"
 													<?php if(!mo_openid_is_customer_registered()) echo 'disabled'?>	<?php checked( get_option('mo_openid_default_comment_enable') == 1 );?> />Comment Form</td>
 											</tr>
+											<tr>
+												<td class="mo_openid_table_td_checkbox">
+													<input type="checkbox" id="woocommerce_login_form" name="mo_openid_woocommerce_login_form" value="1"
+													<?php if(!mo_openid_is_customer_registered()) echo 'disabled'?>	<?php checked( get_option('mo_openid_woocommerce_login_form') == 1 );?> />WooCommerce Login Form</td>
+											</tr>
 								<tr><td>&nbsp;</td></tr>
 								<tr>
 									<td>

@@ -24,6 +24,7 @@
 	delete_option('mo_openid_default_login_enable');
 	delete_option('mo_openid_default_register_enable');
 	delete_option('mo_openid_default_comment_enable');
+	delete_option('mo_openid_woocommerce_login_form');
 	delete_option('mo_openid_login_redirect');
 	delete_option('mo_openid_login_redirect_url');
 	delete_option('moopenid_social_login_avatar');

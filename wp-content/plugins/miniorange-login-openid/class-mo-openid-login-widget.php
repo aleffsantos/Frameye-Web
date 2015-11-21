@@ -743,16 +743,15 @@ class mo_openid_sharing_ver_wid extends WP_Widget {
 			$token_params = urlencode( $token_params_encode );
 			$userdata = get_option('moopenid_user_attributes')?'true':'false';
 			
-			
-			if(isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off'){
-				$http = "https://";
-			} else {
-				$http =  "http://";
-			}
-			
-			$base_return_url =  $http . $_SERVER["HTTP_HOST"] . strtok($_SERVER["REQUEST_URI"],'?');
+			$http = isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? "https://" : "http://";
 
-    		$return_url = urlencode( $base_return_url . '/?option=moopenid' );
+			$parts = parse_url($http . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+			parse_str($parts['query'], $query);
+			$post = isset( $query['p'] ) ? '?p=' . $query['p'] : '';
+			
+			$base_return_url =  $http . $_SERVER["HTTP_HOST"] . strtok($_SERVER["REQUEST_URI"],'?') . $post;
+
+			$return_url = strpos($base_return_url, '?') !== false ? urlencode( $base_return_url . '&option=moopenid' ): urlencode( $base_return_url . '?option=moopenid' );
 
 			$url = get_option('mo_openid_host_name') . '/moas/openid-connect/client-app/authenticate?token=' . $token_params . '&userdata=' . $userdata. '&id=' . get_option('mo_openid_admin_customer_key') . '&encrypted=true&app=' . $_REQUEST['app_name'] . '_oauth&returnurl=' . $return_url . '&encrypt_response=true';
 			wp_redirect( $url );
@@ -767,6 +766,7 @@ class mo_openid_sharing_ver_wid extends WP_Widget {
 			$decrypted_first_name = isset($_POST['firstName']) ? mo_openid_decrypt($_POST['firstName']): '';
 			$decrypted_last_name = isset($_POST['lastName']) ? mo_openid_decrypt($_POST['lastName']): '';
 			
+
 			if( isset( $_POST['email'] ) ) {
 				$user_email = $decrypted_email;
 			} else if( isset( $_POST['username'] )){
@@ -882,7 +882,7 @@ class mo_openid_sharing_ver_wid extends WP_Widget {
 			} else {
 				$http =  "http://";
 			}
-			$redirect_url = urldecode(html_entity_decode(esc_url($http . $_SERVER["HTTP_HOST"] . str_replace('?option=moopenid','',$_SERVER['REQUEST_URI']))));
+			$redirect_url = urldecode(html_entity_decode(esc_url($http . $_SERVER["HTTP_HOST"] . str_replace('option=moopenid','',$_SERVER['REQUEST_URI']))));
 			if(html_entity_decode(esc_url(remove_query_arg('ss_message', $redirect_url))) == wp_login_url() || strpos($_SERVER['REQUEST_URI'],'wp-login.php') !== FALSE || strpos($_SERVER['REQUEST_URI'],'wp-admin') !== FALSE){
 				$redirect_url = site_url().'/';
 			}
